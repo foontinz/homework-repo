@@ -10,3 +10,13 @@ if __name__ == '__main__':
     name = 'Dima'
     day = 'Saturday'
     print(f'Good day {name}!{day} is a perfect day to learn some python')
+    #print('Good day {}!{} is a perfect day to learn some python'.format(name,day))
+
+    #Save your first and last name as separate variables, then use string concatenation to add them together with a white space in between and print a greeting.
+
+    surname = 'Yurinoff'
+    print(surname + ' ' + name)
+
+
+
+
