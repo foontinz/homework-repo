@@ -14,7 +14,7 @@ if __name__ == '__main__':
     surname = 'Yurinoff'
     print(surname + ' ' + name)
 
-    # Make a program with 2 numbers saved in separate variables a and b, then print the result for each of the following:
+    # Make a program with 2 numbers saved in separate variables a and b, then print the result for each of the following
     a = 12
     b = 4
     print(f'{a+b}\n{a-b}\n{a/b}\n{a*b}\n{a**b}\n{a%b}\n{a//b}')
