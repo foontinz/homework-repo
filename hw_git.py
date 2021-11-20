@@ -19,10 +19,10 @@ width = 12
 length = 6
 price = 600
 Sshifer = 12
-S = round(((width**2+length**2)**0.5) * height, 2, )
+S = round(((width**2+length**2)**0.5) * height, 2, ) # площадь сечения
 print(f'Площадь сечения {S} ')
-remaining_Sshifer = round(S%Sshifer,2)
+remaining_Sshifer = round(S%Sshifer,2) # лишний шифер
 
-needed_sheets = ((S+(Sshifer-remaining_Sshifer))/Sshifer)
-cost = 600 * needed_sheets
+needed_sheets = ((S+(Sshifer-remaining_Sshifer))/Sshifer) # взяли площадь сечения + площадь шифера - лишний , делим на площадь листа и получаем скок нужно листов
+cost = 600 * needed_sheets # скок потратили
 print(f'Осталось метров квадратных шифера {remaining_Sshifer}, необходимо было купить {needed_sheets}, потрачено {cost}')
