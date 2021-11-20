@@ -9,7 +9,7 @@ x1 = 32
 x2 = 12
 y1 = 5
 y2 = 17
-print('Расстояние = ',round(((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5,2), '\n')
+print('Расстояние = ', round(((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5, 2), '\n')
 
 ###задание Создайте переменные Высоты ширины и глубины для прямоугольника и выведите с помощью команды print площадь диагонального сеения.
 # (представьте себе что нужно рассчитать площадь щифера для крыши.)
@@ -19,10 +19,55 @@ width = 12
 length = 6
 price = 600
 Sshifer = 12
-S = round(((width**2+length**2)**0.5) * height, 2, ) # площадь сечения
+S = round(((width ** 2 + length ** 2) ** 0.5) * height, 2, )  # площадь сечения
 print(f'Площадь сечения {S} ')
-remaining_Sshifer = round(S%Sshifer,2) # лишний шифер
+remaining_Sshifer = round(S % Sshifer, 2)  # лишний шифер
+needed_sheets = ((S + (
+        Sshifer - remaining_Sshifer)) / Sshifer)  # взяли площадь сечения + площадь шифера - лишний , делим на площадь листа и получаем скок нужно листов
+cost = 600 * needed_sheets  # скок потратили
+print(
+    f'Осталось метров квадратных шифера {remaining_Sshifer}, необходимо было купить {needed_sheets}, потрачено {cost} \n')
 
-needed_sheets = ((S+(Sshifer-remaining_Sshifer))/Sshifer) # взяли площадь сечения + площадь шифера - лишний , делим на площадь листа и получаем скок нужно листов
-cost = 600 * needed_sheets # скок потратили
-print(f'Осталось метров квадратных шифера {remaining_Sshifer}, необходимо было купить {needed_sheets}, потрачено {cost}')
+##Сделайте чтобы он выводил 'Привіт Остап' еще тремя способами форматирования. И да они все вам понадобятся. f-строки, .format и форматирование через "%"
+name = "Остап"
+print("Привіт " + name)
+print(f'Привіт {name}')
+print('Привіт {}'.format(name))
+print('Привіт %s \n' % (name))
+
+# Отредактируйте код чтобы выполнялись ассерт инструкции. (потребуется знание строковых функций.)
+var1 = 'pyThoN'
+# ваш код
+# var1 = .....
+var1 = var1.lower()
+var1 = var1.capitalize()
+assert var1 == 'Python'
+# ваш код
+# var1 = .....
+var1 = var1.upper()
+assert var1 == 'PYTHON'
+# ваш код
+# var1 = .....
+var1 = var1.lower()
+assert var1 == 'python'
+var1 = " python "
+# ваш код
+# var1 = .....
+var1 = var1.strip()
+assert var1 == 'python'
+
+###Задача Поменяйте местами значения в переменных
+a = 10
+b = 55
+# ваш код
+a, b = b, a
+assert a == 55 and b == 10, "Не поменялось. :("
+
+###Задача Используя слайсы, конкатенацию (обьединение) и смекалку заставьте код работать
+base_str = 'Корован'
+rez = 0
+# ваш код
+# rez = ....
+rez = (base_str[4] + base_str[1:4] + base_str[-1:-3:-1]).capitalize()
+print(rez)
+assert rez == 'Ворона'
