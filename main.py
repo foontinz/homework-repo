@@ -3,6 +3,20 @@ if __name__ == '__main__':
     print("#########\n#\t\t#\n#\t\t#\n#\t\t#\n#########\n")
     print("#\t\t#\n#\t\t#\n#########\n#\t\t#\n#\t\t#")
 
+
+    #Create a python program named “task2”, and use the built-in function `print` in it several times. Try to pass “sep”, “end” params and pass several parameters separated by commas.
+    # LMS
+    print('L', 'M', 'S', sep='')
+    # 20-11-2021
+    print('20', '11', '2021', sep='-')
+    # betroot@academy.com
+    print('betroot', 'academy.com', sep='@')
+    # Python@rolling.thunder
+    print("Python", end='@')
+    print("rolling.thunder")
+
+
+
     # Make a program that has your name and the current day of the week stored as separate variables and then prints a message like this:
     # “Good day <name>! <day> is a perfect day to learn some python.”
     name = 'Dima'
@@ -18,3 +32,4 @@ if __name__ == '__main__':
     a = 12
     b = 4
     print(f'{a+b}\n{a-b}\n{a/b}\n{a*b}\n{a**b}\n{a%b}\n{a//b}')
+
