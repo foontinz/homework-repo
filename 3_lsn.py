@@ -10,18 +10,27 @@ if __name__ == '__main__':
     else:
         print('¯\_ (ツ) _/¯ \n')
 
-    #Задание У вас есть переменные holiday, day_of_week, wallet проставьте условия в код.
-    #Попробуйте менять исходные значения чтоб убедиться что все ok
+    # Задание У вас есть переменные holiday, day_of_week, wallet проставьте условия в код.
+    # Попробуйте менять исходные значения чтоб убедиться что все ok
     holiday, day_of_week_2, wallet = False, 6, 5000
-    beer , chipsiki , restik, polet = 1000, 500, 2500, 5000
-    if (holiday==True or 6<=day_of_week_2<=7) and (wallet<chipsiki):
+    beer, chipsiki, restik, polet = 1000, 500, 2500, 5000
+    if (holiday == True or 6 <= day_of_week_2 <= 7) and (wallet < chipsiki):
         print("оно то и можно погулять но не на что")
-    elif (wallet==chipsiki+beer) and (holiday==True or 6<=day_of_week_2<=7)  :
+    elif (wallet == chipsiki + beer) and (holiday == True or 6 <= day_of_week_2 <= 7):
         print("пиво и чипсы на большее денег нет")
-    elif (wallet>=restik and (holiday==True or 6<=day_of_week_2<=7)):
+    elif (wallet >= restik and (holiday == True or 6 <= day_of_week_2 <= 7)):
         print("гуляем в ресторане, всех угощаю")
-    elif (wallet>=polet and (holiday==True or 6<=day_of_week_2<=7)):
+    elif (wallet >= polet and (holiday == True or 6 <= day_of_week_2 <= 7)):
         print("После Безоса следующим лечу я. И моя любимая кошка!")
     else:
         print("работаем")
+
+
+    # задание Выведите значения у для х в пределах от 0 до 100 c шагом 1 если y = 3x + 12
+    x = 0
+    for i in range(-1, 100):
+        y = 3*x + 12
+        print(f'x={x}, y={y}')
+        x += 1
+
 
