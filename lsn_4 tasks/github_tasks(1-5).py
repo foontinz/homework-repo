@@ -35,24 +35,28 @@ if __name__ == '__main__':
     # Провалидируйте введенный пользователем номер телефона.
 
     phone_number = '+0672937803'
-    if (phone_number[0:1] == '+'):
-        if (phone_number[1:4] == '067' or phone_number[1:4] == '039' or phone_number[1:4] == '068'):
-            print('Kyivstar')
-        elif (phone_number[1:4] == '063' or phone_number[1:4] == '093'):
-            print('Lifecell')
-        elif (phone_number[1:4] == '050' or phone_number[1:4] == '066' or phone_number[1:4] == '095'):
-            print('MTS')
+    if(len(phone_number) == 10):
+        if (phone_number[0:1] == '+'):
+            if (phone_number[1:4] == '067' or phone_number[1:4] == '039' or phone_number[1:4] == '068'):
+                print('Kyivstar')
+            elif (phone_number[1:4] == '063' or phone_number[1:4] == '093'):
+                print('Lifecell')
+            elif (phone_number[1:4] == '050' or phone_number[1:4] == '066' or phone_number[1:4] == '095'):
+                print('MTS')
+            else:
+                print('Какой нибудь другой)')
+        elif (phone_number[0:1] != '+'):
+            if (phone_number[0:3] == '067' or phone_number[0:3] == '039' or phone_number[0:3] == '068'):
+                print('Kyivstar')
+            elif (phone_number[0:3] == '063' or phone_number[0:3] == '093'):
+                print('Lifecell')
+            elif (phone_number[0:3] == '050' or phone_number[0:3] == '066' or phone_number[0:3] == '095'):
+                print('MTS')
+            else:
+                print('Какой нибудь другой)')
         else:
-            print('Какой нибудь другой)')
-    else:
-        if (phone_number[0:3] == '067' or phone_number[0:3] == '039' or phone_number[0:3] == '068'):
-            print('Kyivstar')
-        elif (phone_number[0:3] == '063' or phone_number[0:3] == '093'):
-            print('Lifecell')
-        elif (phone_number[0:3] == '050' or phone_number[0:3] == '066' or phone_number[0:3] == '095'):
-            print('MTS')
-        else:
-            print('Какой нибудь другой)')
+            print('wrong format')
+
 
     # Используя функцию input получаем от пользователя строку. Напишите код в котором просим дать ответ на загадку.
     # Если человек сдается он вводит q или Q и прерываем цикл while. Если угадал - выводим поздравление. Если нет - пристыдите его.
