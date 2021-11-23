@@ -20,12 +20,9 @@ while True:
     elif (client_1 == '2'):
         print(tariffes)
         continue
-    elif(client_1 == '3'):
+    elif (client_1 == '3'):
         print(oper)
         continue
-    elif(client_1 == 'q'):
+    elif (client_1 == 'q'):
         print('Удачи')
         break
-
-
-
