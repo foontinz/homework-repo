@@ -14,7 +14,7 @@ if __name__ == '__main__':
         else:
             print('Nope -_-')
 
-    # The birthday greeting program .
+    # The birthday greeting program  .
 
     name = input('Enter your name')
     age = int(input('Enter your age'))
