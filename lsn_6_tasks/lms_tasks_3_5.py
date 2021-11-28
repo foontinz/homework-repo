@@ -33,3 +33,15 @@ if __name__ == '__main__':
         if i in my_list_2 and i in my_list_1:
             sorted_list.append(i)
     print(f'{sorted_list} - sorted list')
+
+    # Make a list that contains all integers from 1 to 100,
+    # then find all integers from the list that are divisible by 7 but not a multiple of 5,
+    # and store them in a separate list. Finally, print the list.
+    listok = list(range(100))
+    listok_2 = []
+    i = 0
+    while i < len(listok):
+        if listok[i] % 5 and not listok[i] % 7:
+            listok_2.append(listok[i])
+        i += 1
+    print(listok_2)
