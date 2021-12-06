@@ -3,12 +3,39 @@ from random import choice
 from random import randint
 
 
+def ask_yesno(question):
+    yes = {'yes', 'y'}
+    no = {'no', 'n'}
+
+    done = False
+    print(question)
+    while not done:
+        choice = input().lower().strip()
+        if choice in yes:
+            return True
+        elif choice in no:
+            return False
+        else:
+            print("Wrong format, dude")
+
+
 def make_bet(balance):
     current_bet = input('Make bet, use only digits pls')
     try:
         current_bet = int(current_bet)
-        balance -= current_bet
-        return current_bet, balance
+        if current_bet <= balance:
+            balance -= current_bet
+            return current_bet, balance
+        else:
+            print('You have not enough money, dude')
+            deposit_again = ask_yesno('Want depo more? y/n')
+            if deposit_again:
+                balance = deposit(balance)
+                print(f' Your balance\t{balance}')
+                make_bet(balance)
+                return current_bet, balance
+            else:
+                make_bet(balance)
     except:
         print('Wrond format, dude')
         make_bet(balance)
@@ -24,6 +51,8 @@ def check_21(p_points, d_points):
     elif d_points > 21 and p_points <= 21:
         return True, False
     elif d_points > 21 and p_points > 21:
+        return True, True
+    elif d_points == 21 and p_points == 21:
         return True, True
     else:
         return False, False
@@ -71,24 +100,11 @@ def deposit(balance: int):
         return balance
 
 
-def want_more(p_points, d_points):
-    w_more = input('Want more? y/n').lower().strip()
-    if w_more == 'y':
-        w_more = True
-        return w_more
-    elif w_more == 'n':
-        w_more = False
-        return w_more
-    else:
-        print('Wrong format, dude')
-        want_more(p_points, d_points)
-
-
 def next_round(p_points: int, d_points: int):
     p_card = random_card()
     p_points += p_card[2]
     print(f'Вашa картa {p_card[:2]} ')
-    if randint(0,1):
+    if randint(0, 1):
         d_card = random_card()
         d_points += d_card[2]
         print(f'Картa диллера {d_card[:2]}')
@@ -97,34 +113,37 @@ def next_round(p_points: int, d_points: int):
     return p_points, d_points
 
 
+def dealer_card(d_points: int):
+    if randint(0, 1) == 1:
+        d_card = random_card()
+        d_points += d_card[2]
+        print(f'Картa диллера {d_card[:2]}')
+        return d_points
+    print(f'Диллер не взял карту')
+    return d_points
+
+
 if __name__ == '__main__':
     FULL_DECK = [
         {'♠': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
         {'♥': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
         {'♣': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
         {'♦': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]}]
-    DEALER_WIN = False
-    PLAYER_WIN = False
-
+    SEPARATOR = '-'*100
     MONEY_BALANCE = 0
-    PLAYER_POINTS = 0
-    DEALER_POINTS = 0
 
     NAME = get_name()
-    while True:
-        start = input(f'Wanna play, Mr {NAME} ? (y/n)').lower().strip()
-        if start == 'y':
-            start = True
-            break
-        elif start == 'n':
-            start = False
-            break
-        print('Wrong format dude')
-        continue
+    start = ask_yesno('Do you want to play? y/n')
 
-    if start is True:
+    while start is True:
+        PLAYER_POINTS = 0
+        DEALER_POINTS = 0
+        DEALER_WIN = False
+        PLAYER_WIN = False
+        print(SEPARATOR)
         print(f'Mr {NAME}, game is starting')
         if MONEY_BALANCE == 0:
+            print('You are poor indian, deposit to play')
             MONEY_BALANCE = deposit(MONEY_BALANCE)
         CURRENT_BET, MONEY_BALANCE = make_bet(MONEY_BALANCE)
         print(f'Your bet is {CURRENT_BET}, remaining balance {MONEY_BALANCE}')
@@ -145,11 +164,12 @@ if __name__ == '__main__':
                 print(f'You lost, your balance now\t{MONEY_BALANCE}')
                 break
             else:
-                w_more = want_more(PLAYER_POINTS, DEALER_POINTS)
+                w_more = ask_yesno('Want more? y/n')
                 if w_more:
                     PLAYER_POINTS, DEALER_POINTS = next_round(PLAYER_POINTS, DEALER_POINTS)
                     continue
                 elif not w_more:
+                    DEALER_POINTS = dealer_card(DEALER_POINTS)
                     if PLAYER_POINTS > DEALER_POINTS:
                         MONEY_BALANCE += CURRENT_BET * 2
                         print(f'You won, your balance now {MONEY_BALANCE}')
@@ -157,3 +177,10 @@ if __name__ == '__main__':
                     else:
                         print(f'You lost, your balance now{MONEY_BALANCE}')
                         break
+        start = input('Do you want to play again? y/n').strip().lower()
+        if start == 'y':
+            start = True
+        elif start == 'n':
+            start == False
+
+        continue
