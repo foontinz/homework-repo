@@ -1,5 +1,4 @@
 # Допишите игру 21.
-from random import choice
 from random import randint
 
 
@@ -10,35 +9,36 @@ def ask_yesno(question):
     done = False
     print(question)
     while not done:
-        choice = input().lower().strip()
-        if choice in yes:
+        choize = input().lower().strip()
+        if choize in yes:
             return True
-        elif choice in no:
+        elif choize in no:
             return False
         else:
             print("Wrong format, dude")
 
 
 def make_bet(balance):
-    current_bet = input('Make bet, use only digits pls')
-    try:
-        current_bet = int(current_bet)
-        if current_bet <= balance:
-            balance -= current_bet
-            return current_bet, balance
-        else:
-            print('You have not enough money, dude')
-            deposit_again = ask_yesno('Want depo more? y/n')
-            if deposit_again:
-                balance = deposit(balance)
-                print(f' Your balance\t{balance}')
-                make_bet(balance)
+    while True:
+        current_bet = input('Make bet, use only digits pls')
+        try:
+            current_bet = int(current_bet)
+            if current_bet <= balance:
+                balance -= current_bet
                 return current_bet, balance
             else:
-                make_bet(balance)
-    except:
-        print('Wrond format, dude')
-        make_bet(balance)
+                print('You have not enough money, dude')
+                deposit_again = ask_yesno('Want depo more? y/n')
+                if deposit_again:
+                    balance = deposit(balance)
+                    print(f' Your balance\t{balance}')
+                    continue
+                else:
+                    print(f' Your balance\t{balance}')
+                    continue
+        except:
+            print('Wrong format, dude')
+            make_bet(balance)
 
 
 def check_21(p_points, d_points):
@@ -63,7 +63,7 @@ def get_name():
     return name
 
 
-def first_round(p_points: int, d_points: int):
+def first_round():
     round_1_player_1 = random_card()
     round_1_player_2 = random_card()
     round_1_dealer_1 = random_card()
@@ -129,7 +129,7 @@ if __name__ == '__main__':
         {'♥': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
         {'♣': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
         {'♦': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]}]
-    SEPARATOR = '-'*100
+    SEPARATOR = '-' * 100
     MONEY_BALANCE = 0
 
     NAME = get_name()
@@ -148,9 +148,9 @@ if __name__ == '__main__':
         CURRENT_BET, MONEY_BALANCE = make_bet(MONEY_BALANCE)
         print(f'Your bet is {CURRENT_BET}, remaining balance {MONEY_BALANCE}')
 
-        PLAYER_POINTS, DEALER_POINTS = first_round(PLAYER_POINTS, DEALER_POINTS)
+        PLAYER_POINTS, DEALER_POINTS = first_round()
 
-        while PLAYER_WIN != True and DEALER_WIN != True:
+        while PLAYER_WIN is not True and DEALER_WIN is not True:
             print(PLAYER_POINTS, 'player', DEALER_POINTS, 'dealer')
             PLAYER_WIN, DEALER_WIN = check_21(PLAYER_POINTS, DEALER_POINTS)
             if PLAYER_WIN and DEALER_WIN:
@@ -177,10 +177,5 @@ if __name__ == '__main__':
                     else:
                         print(f'You lost, your balance now{MONEY_BALANCE}')
                         break
-        start = input('Do you want to play again? y/n').strip().lower()
-        if start == 'y':
-            start = True
-        elif start == 'n':
-            start == False
+        start = ask_yesno('Do you want to play again? y/n')
 
-        continue
