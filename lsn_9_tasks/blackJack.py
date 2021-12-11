@@ -124,11 +124,11 @@ def dealer_card(d_points: int):
 
 
 if __name__ == '__main__':
-    FULL_DECK = [
-        {'♠': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
-        {'♥': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
-        {'♣': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
-        {'♦': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]}]
+    FULL_DECK = {
+        '♠': {'6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 2, 'Q': 3, 'K': 4, 'A': 11},
+        '♥': {'6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 2, 'Q': 3, 'K': 4, 'A': 11},
+        '♣': {'6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 2, 'Q': 3, 'K': 4, 'A': 11},
+        '♦':  {'6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 2, 'Q': 3, 'K': 4, 'A': 11}}
     SEPARATOR = '-' * 100
     MONEY_BALANCE = 0
 
@@ -169,6 +169,8 @@ if __name__ == '__main__':
                     PLAYER_POINTS, DEALER_POINTS = next_round(PLAYER_POINTS, DEALER_POINTS)
                     continue
                 elif not w_more:
+                    print(PLAYER_POINTS, 'player', DEALER_POINTS, 'dealer')
+
                     DEALER_POINTS = dealer_card(DEALER_POINTS)
                     if PLAYER_POINTS > DEALER_POINTS:
                         MONEY_BALANCE += CURRENT_BET * 2
@@ -178,4 +180,3 @@ if __name__ == '__main__':
                         print(f'You lost, your balance now{MONEY_BALANCE}')
                         break
         start = ask_yesno('Do you want to play again? y/n')
-
