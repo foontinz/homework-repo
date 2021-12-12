@@ -58,7 +58,10 @@ def search_by(param, what):
     for i in read_json():
         if param == i[f'{what}']:
             searched.append(i)
-    return searched
+    if len(searched) > 0:
+        return searched
+    else:
+        return 'Not found'
 
 
 def ask_info():
@@ -68,6 +71,11 @@ def ask_info():
     state = input('Введите область')
     number = input('Введите номер в формате +380123456789')
     return [name, surname, number, city, state]
+
+
+def ask_search(question):
+    answer = input(f'{question}')
+    return answer
 
 
 def update_contact(name, surname, number, city, state):
@@ -119,10 +127,28 @@ def add_contact(name, surname, number, city, state):
         add_contact(name, surname, number, city, state)
 
 
-ans = input(f'{MENU_MESSAGE}').lower()
-while ans != 'q':
-    if ans == '1':
-        pprint.pprint(show_all())
-    elif ans == '2':
-        add_contact(*ask_info())
+if __name__ == '__main__':
+
     ans = input(f'{MENU_MESSAGE}').lower()
+    while ans != 'q':
+        if ans == '1':
+            pprint.pprint(show_all())
+        elif ans == '2':
+            add_contact(*ask_info())
+        elif ans == '3':
+            update_contact(*ask_info())
+        elif ans == '4':
+            pprint.pprint(search_by(ask_search('Enter a city'), 'city'))
+        elif ans == '5':
+            pprint.pprint(search_by(ask_search('Enter a state'), 'state'))
+        elif ans == '6':
+            pprint.pprint(search_by(ask_search('Enter a name'), 'name'))
+        elif ans == '7':
+            pprint.pprint(search_by(ask_search('Enter a surname'), 'surname'))
+        elif ans == '8':
+            pprint.pprint(search_by(ask_search('Enter a fullname(Surname Name)'), 'fullname'))
+        elif ans == '9':
+            pprint.pprint(search_by(ask_search('Enter a number'), 'number'))
+        elif ans == 'q':
+            break
+        ans = input(f'{MENU_MESSAGE}').lower()
