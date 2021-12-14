@@ -1,4 +1,5 @@
 # Допишите игру 21.
+import random
 from random import randint
 
 
@@ -124,11 +125,11 @@ def dealer_card(d_points: int):
 
 
 if __name__ == '__main__':
-    FULL_DECK = {
-        '♠': {'6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 2, 'Q': 3, 'K': 4, 'A': 11},
-        '♥': {'6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 2, 'Q': 3, 'K': 4, 'A': 11},
-        '♣': {'6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 2, 'Q': 3, 'K': 4, 'A': 11},
-        '♦':  {'6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 2, 'Q': 3, 'K': 4, 'A': 11}}
+    FULL_DECK = [
+        {'♠': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
+        {'♥': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
+        {'♣': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]},
+        {'♦': [{'6': 6}, {'7': 7}, {'8': 8}, {'9': 9}, {'10': 10}, {'J': 2}, {'Q': 3}, {'K': 4}, {'A': 11}]}]
     SEPARATOR = '-' * 100
     MONEY_BALANCE = 0
 
@@ -177,6 +178,6 @@ if __name__ == '__main__':
                         print(f'You won, your balance now {MONEY_BALANCE}')
                         break
                     else:
-                        print(f'You lost, your balance now{MONEY_BALANCE}')
+                        print(f'You lost, your balance now {MONEY_BALANCE}')
                         break
         start = ask_yesno('Do you want to play again? y/n')
