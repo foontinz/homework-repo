@@ -85,7 +85,7 @@ def random_card():
     index_para = randint(0, len(values) - 1)
     para = values.pop(index_para)
     FULL_DECK.append(part_of_deck)
-    for m, v in para.items():
+    for m, v in para.items():   
         mark = m
         value = v
     return [mark, suit, value]
