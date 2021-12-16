@@ -32,7 +32,7 @@ class ProductStore:
         except AttributeError:
             print('attribute error')
 
-    def add(self, prod: Product, amount: int, discount=0):
+    def add(self, prod: Product, amount: int, discount=0, additional_price=0):
         try:
             for product in self.product_list:
                 if prod.name == product['name']:
@@ -44,7 +44,7 @@ class ProductStore:
                          'name': prod.name,
                          'amount': amount,
                          'discount': discount + self.start_discount,
-                         'start_price': prod.price,
+                         'start_price': prod.price + prod.price*additional_price/100,
                          'real_price': prod.price
                          }
             self.product_list.append(temp_dict)
