@@ -60,19 +60,22 @@ class ProductStore:
         """
         try:
             if self.check_exist(prod):
-                for product in self.product_list:
-                    if howto == 'name':
-                        if prod.name == product['name']:
-                            product.update({'discount': discount + self.start_discount})
-                            self.price_update()
-                    elif howto == 'type':
-                        if prod.type == product['type']:
-                            product.update({'discount': discount + self.start_discount})
-                            self.price_update()
-                    else:
-                        print('Param error')
-                return
-            print('No such item in shop')
+                if 0 <= discount <= 100:
+                    for product in self.product_list:
+                        if howto == 'name':
+                            if prod.name == product['name']:
+                                product.update({'discount': discount + self.start_discount})
+                                self.price_update()
+                        elif howto == 'type':
+                            if prod.type == product['type']:
+                                product.update({'discount': discount + self.start_discount})
+                                self.price_update()
+                        else:
+                            print('Param error')
+                        return
+                else:
+                    print('Discount can be 1-100 only')
+                print('No such item in shop')
         except AttributeError:
             print('attribute error')
 
@@ -110,5 +113,3 @@ class ProductStore:
 
     def get_product_info(self, name: str):
         return [{item['name']: item['amount']} for item in self.product_list if item['name'] == name]
-
-
