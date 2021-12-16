@@ -9,11 +9,12 @@ class Product:
 
 
 class ProductStore:
-    def __init__(self, naming: str, start_discount=0):
+    def __init__(self, naming: str, start_discount=0, standart_nacenka=0):
         self.name = naming
         self.product_list = []
         self.start_discount = start_discount
         self.income = 0
+        self.standart_nac = standart_nacenka
 
     def check_exist(self, prod):
         try:
@@ -33,6 +34,8 @@ class ProductStore:
             print('attribute error')
 
     def add(self, prod: Product, amount: int, discount=0, additional_price=0):
+        if additional_price == 0:
+            additional_price = self.standart_nac
         try:
             for product in self.product_list:
                 if prod.name == product['name']:
@@ -44,13 +47,15 @@ class ProductStore:
                          'name': prod.name,
                          'amount': amount,
                          'discount': discount + self.start_discount,
-                         'start_price': prod.price + prod.price*additional_price/100,
+                         'start_price': prod.price + prod.price * additional_price / 100,
                          'real_price': prod.price
                          }
             self.product_list.append(temp_dict)
             self.price_update()
         except AttributeError:
             print('attribute error')
+        except ValueError:
+            print('value error')
 
     def set_discount(self, discount, prod: Product, howto):
         """
