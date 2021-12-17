@@ -1,6 +1,3 @@
-import pprint
-
-
 class Product:
     def __init__(self, naming: str, typ: str, price: int):
         self.name = naming
@@ -25,7 +22,7 @@ class ProductStore:
         except AttributeError:
             print('attribute error')
 
-    def price_update(self):
+    def _price_update(self):
         try:
             for product in self.product_list:
                 product.update(
@@ -40,7 +37,7 @@ class ProductStore:
             for product in self.product_list:
                 if prod.name == product['name']:
                     product.update({'amount': product['amount'] + amount})
-                    self.price_update()
+                    self._price_update()
 
                     return
             temp_dict = {'type': prod.type,
@@ -51,7 +48,7 @@ class ProductStore:
                          'real_price': prod.price
                          }
             self.product_list.append(temp_dict)
-            self.price_update()
+            self._price_update()
         except AttributeError:
             print('attribute error')
         except ValueError:
@@ -70,11 +67,11 @@ class ProductStore:
                         if howto == 'name':
                             if prod.name == product['name']:
                                 product.update({'discount': discount + self.start_discount})
-                                self.price_update()
+                                self._price_update()
                         elif howto == 'type':
                             if prod.type == product['type']:
                                 product.update({'discount': discount + self.start_discount})
-                                self.price_update()
+                                self._price_update()
                         else:
                             print('Param error')
                         return
