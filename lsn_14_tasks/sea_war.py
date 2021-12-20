@@ -1,4 +1,4 @@
-import pprint
+import time
 from random import choice
 from random import randint
 
@@ -54,9 +54,11 @@ class War:
 
         if self.bot1.is_over():
             print('Bot #2 won. Humanity in danger')
+            time.sleep(10)
             exit()
         elif self.bot2.is_over():
             print('Bot #1 won. Humanity in danger ')
+            time.sleep(10)
             exit()
 
     def war_begin(self):
@@ -76,7 +78,9 @@ class War:
         print('Бот №2 тетрадочка          \t\t\t  Бот №1 тетрадочка')
         self.bot2.display_board()
         print('-' * 100)
+        time.sleep(2)
         self.war_loop()
+
 
     def war_loop(self):
         self.shoot(1)
@@ -87,6 +91,7 @@ class War:
         self.bot2.display_board()
         print('-' * 100)
         self.war_finish()
+        time.sleep(2)
         self.war_loop()
 
 
