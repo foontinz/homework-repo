@@ -1,7 +1,3 @@
 import random
-a = {
-    'asd':False,
-    'ldaow':False}
-if any(list(a.values())):
-    print(123)
-    print(list(a.values()))
+a = '12313dsa adae dsqe fqwe'
+print(len(a))
