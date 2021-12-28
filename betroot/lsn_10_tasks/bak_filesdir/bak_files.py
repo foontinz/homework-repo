@@ -1,6 +1,6 @@
 import os
 import uuid
-from lsn_10_tasks.bak_filesdir.config import cache_directory
+from betroot.lsn_10_tasks.bak_filesdir.config import cache_directory
 
 
 def cache_check():
